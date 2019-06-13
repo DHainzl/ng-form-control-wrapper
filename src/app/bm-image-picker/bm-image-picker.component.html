@@ -1,0 +1,17 @@
+<h3>Image Picker</h3>
+<div *ngIf="!changeSelection">
+    <div>Currently selected images: {{ selectedImages.join(', ') }}</div>
+    <button (click)="openSelectionChange()">Change</button>
+</div>
+<div *ngIf="changeSelection">
+    <div *ngFor="let image of allImages">
+        <label>
+            <input type="checkbox" [ngModel]="tempSelectedImages.indexOf(image) != -1" (ngModelChange)="toggleImage(image, $event)" />
+            {{ image }}
+        </label>
+    </div>
+    <div>
+        <button (click)="cancelSelectionChange()">Cancel</button>
+        <button (click)="saveSelection()">Save</button>
+    </div>
+</div>
